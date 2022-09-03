@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/release-branch.v1.dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/juanmanuel0963/terraform_jenkins_ec2_instance']]])
+            }
+        }
+        stage('Terraform init') {
+            steps {
+                sh ("terraform init");
+            }
+            
+        }
+        stage('Terraform action') {
+            steps {
+                echo "terraform action from the parameter is --> ${action}"
+                sh ("terraform ${action} --auto-approve");
+            }
+            
+        }        
+    }
+}

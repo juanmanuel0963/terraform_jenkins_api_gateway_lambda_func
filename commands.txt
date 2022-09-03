@@ -1,0 +1,100 @@
+-----AWS - Set the authentication profile to execute Terraform commands------------------------
+
+C:\Users\xxx\.aws\config
+C:\Users\xxx\.aws\credentials
+
+# Run the aws configure command to set your access and secret keys
+
+aws configure
+
+aws configure --profile default
+
+-----Golang------------------------
+
+go get -u github.com/aws/aws-lambda-go/events
+go get -u github.com/aws/aws-lambda-go/lambda
+
+--before build binary to upload to AWS
+$Env:GOOS = "linux" 
+
+--build
+go build main.go
+
+-----Terraform - Set the current working workspace------------------------
+
+terraform workspace new dev
+
+terraform workspace list
+
+terraform workspace select dev
+
+terraform workspace delete dev
+
+terraform workspace show
+
+-----Terraform - Create the resources------------------------
+
+terraform init
+
+terraform validate
+
+terraform plan -out lambda_func.tfplan
+
+#If error raised, assign admin permisions to user account. Check this:
+#https://peaku.co/es/preguntas/20895-error:-obtener-zonas-de-disponibilidad-al-intentar-crear-un-cluster-de-eks
+
+terraform apply "lambda_func.tfplan"
+terraform destroy --auto-approve
+
+terraform destroy
+terraform destroy --auto-approve
+
+----Invoque function-----------
+
+https://0j6ypp19lk.execute-api.us-east-1.amazonaws.com/lambda_func_go
+
+
+-----Jenkins and Terraform Installation on AWS EC2 Step 1/2 -----------
+
+Ubuntu EC2 instance setup and Jenkins installation. Follow this tutorial:
+https://www.youtube.com/watch?v=9iLm25n1xk4
+
+Connecting to EC2 instance throught ssh terminal
+ssh -i "EC2_Ubuntu_Jenkins.pem" ubuntu@ec2-34-207-160-233.compute-1.amazonaws.com
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions for 'EC2_Amazon_Jenkins.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+
+Check this workaround
+https://superuser.com/questions/1296024/windows-ssh-permissions-for-private-key-are-too-open
+
+Login into Jenkins
+http://ec2-34-207-160-233.compute-1.amazonaws.com:8080/login?from=%2F
+
+(installation 2)
+http://ec2-44-203-179-32.compute-1.amazonaws.com:8080/login?from=%2F
+
+Login into Jenkins
+usuario : juanmanuel0963
+pass: viva100
+
+-----Jenkins and Terraform Installation on AWS EC2 Step 2/2 -----------
+
+Installing Terraform on Ubuntu linux
+https://www.youtube.com/watch?v=6aADuw2cWXQ
+https://www.coachdevops.com/2019/02/install-terraform-on-ubuntu.html
+
+Once logged into Jenkins, install Github and Terraform plugins
+
+-----Creating Jenkins pipeline-----
+
+https://www.youtube.com/watch?v=vRG_JqTwb94
+https://www.coachdevops.com/2021/07/jenkins-terraform-integration-how-do.html
+
+
+
+
