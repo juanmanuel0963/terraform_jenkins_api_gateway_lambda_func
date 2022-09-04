@@ -49,7 +49,7 @@ output "module_api_gateway_invoke_url" {
   description = "Base URL for API Gateway stage."
   value = module.module_api_gateway.api_gateway_invoke_url
 }
-/*
+
 ##################################################################################
 # lambda_func_node
 ##################################################################################
@@ -90,7 +90,7 @@ output "module_lambda_func_node_lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
   value = module.module_lambda_func_node.lambda_func_base_url
 }
-
+/*
 ##################################################################################
 # lambda_func_go
 ##################################################################################
