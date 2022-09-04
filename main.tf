@@ -53,7 +53,7 @@ output "module_api_gateway_invoke_url" {
 ##################################################################################
 # lambda_func_node
 ##################################################################################
-/*
+
 module "module_lambda_func_node" {
     source = "./lambda_func_node/terraform"
     region = var.region  
@@ -131,4 +131,3 @@ output "module_lambda_func_go_lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
   value = module.module_lambda_func_go.lambda_func_base_url
 }
-*/
