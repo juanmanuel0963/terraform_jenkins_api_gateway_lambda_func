@@ -63,8 +63,7 @@ module "module_lambda_func_node" {
     parent_api_gateway_id = module.module_api_gateway.api_gateway_id
     parent_api_gateway_name = module.module_api_gateway.api_gateway_name
     parent_api_gateway_execution_arn = module.module_api_gateway.api_gateway_execution_arn
-    parent_api_gateway_invoke_url = module.module_api_gateway.api_gateway_invoke_url
-    
+    parent_api_gateway_invoke_url = module.module_api_gateway.api_gateway_invoke_url    
 }
 
 ############################################################################  ######
