@@ -14,7 +14,6 @@ variable "secret_key" {
   type    = string
 }
 
-/*
 variable "parent_api_gateway_id"{
   type    = string
 }
@@ -30,7 +29,7 @@ variable "parent_api_gateway_execution_arn"{
 variable "parent_api_gateway_invoke_url"{
   type    = string
 }
-*/
+
 variable "lambda_func_name" {
   type    = string
 }
@@ -99,10 +98,11 @@ resource "aws_s3_bucket" "lambda_func_bucket" {
   bucket = local.lambda_func_bucket_name  
   force_destroy = true
   provider = aws
-  
+  /*
   tags = {
     Environment = terraform.workspace
   }
+  */
 }
 
 //----------Zip file creation----------

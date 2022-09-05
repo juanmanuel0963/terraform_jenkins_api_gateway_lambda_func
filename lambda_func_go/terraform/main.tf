@@ -98,10 +98,10 @@ resource "aws_s3_bucket" "lambda_func_bucket" {
   bucket = local.lambda_func_bucket_name  
   force_destroy = true
   provider = aws
-  
+  /*
   tags = {
     Environment = terraform.workspace
-  }
+  }*/
 }
 
 //----------Zip file creation----------
