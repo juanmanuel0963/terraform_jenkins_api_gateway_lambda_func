@@ -80,28 +80,27 @@ module "module_lambda_func_node" {
 ############################################################################  ######
 # lambda_func_node - OUTPUT
 ##################################################################################
-/*
+
 output "module_lambda_func_node_lambda_func_name" {
   description = "Name of the Lambda function."
   value = module.module_lambda_func_node.lambda_func_name
 }
-*/
+
 output "module_lambda_func_node_lambda_func_bucket_name" {
   description = "Name of the S3 bucket used to store function code."
   value = module.module_lambda_func_node.lambda_func_bucket_name
 }
-/*
+
 output "module_lambda_func_node_lambda_func_role_name" {
   description = "Name of the rol"
   value = module.module_lambda_func_node.lambda_func_role_name
 }
-*/
-/*
+
 output "module_lambda_func_node_lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
   value = module.module_lambda_func_node.lambda_func_base_url
 }
-*/
+
 
 ##################################################################################
 # lambda_func_go
