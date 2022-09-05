@@ -37,12 +37,7 @@ variable "parent_api_gateway_name"{
 variable "parent_api_gateway_invoke_url"{
   type    = string
 }
-/*
-resource "random_integer" "rand" {
-  min = 10000
-  max = 99999
-}
-*/
+
 /*
 resource "random_pet" "lambda_func_bucket_name" {
   prefix = "${replace("${var.lambda_func_name}", "_", "-")}-bucket"
@@ -105,10 +100,6 @@ resource "aws_s3_bucket" "lambda_func_bucket" {
   bucket = local.lambda_func_bucket_name  
   force_destroy = true
   provider = aws
-  /*
-  tags = {
-    Environment = terraform.workspace
-  }*/
 }
 
 //----------Zip file creation----------
@@ -227,7 +218,6 @@ resource "aws_apigatewayv2_route" "the_lambda_function" {
   target    = "integrations/${aws_apigatewayv2_integration.the_lambda_function.id}"
   authorization_type = "AWS_IAM"
 }
-
 
 //----------API Gateway - adding permissions to invoke lambda function ----------
 

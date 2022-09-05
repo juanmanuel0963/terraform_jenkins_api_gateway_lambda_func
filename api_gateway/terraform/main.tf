@@ -100,7 +100,6 @@ resource "aws_apigatewayv2_stage" "the_api_gateway" {
 //Defines a log group to store access logs for the aws_apigatewayv2_stage.the_api_gateway API Gateway stage.
 resource "aws_cloudwatch_log_group" "api_gw" {
   name = "/aws/api_gw/${aws_apigatewayv2_api.the_api_gateway.name}"
-
   retention_in_days = 30
 }
 

@@ -38,12 +38,6 @@ variable "parent_api_gateway_invoke_url"{
   type    = string
 }
 /*
-resource "random_integer" "rand" {
-  min = 10000
-  max = 99999
-}
-*/
-/*
 resource "random_pet" "lambda_func_bucket_name" {
   prefix = "${replace("${var.lambda_func_name}", "_", "-")}-bucket"
   length = 1
@@ -105,11 +99,6 @@ resource "aws_s3_bucket" "lambda_func_bucket" {
   bucket = local.lambda_func_bucket_name  
   force_destroy = true
   provider = aws
-  /*
-  tags = {
-    Environment = terraform.workspace
-  }
-  */
 }
 
 //----------Zip file creation----------
