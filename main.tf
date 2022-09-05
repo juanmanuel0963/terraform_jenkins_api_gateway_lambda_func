@@ -101,17 +101,17 @@ output "module_lambda_func_node_lambda_func_base_url" {
   value = module.module_lambda_func_node.lambda_func_base_url
 }
 
-
 ##################################################################################
 # lambda_func_go
 ##################################################################################
-/*
+
 module "module_lambda_func_go" {
     source = "./lambda_func_go/terraform"
     region = var.region  
     access_key = var.access_key 
     secret_key = var.secret_key
     lambda_func_name = "lambda_func_go"
+    random_integer = local.random_integer
     parent_api_gateway_id = module.module_api_gateway.api_gateway_id
     parent_api_gateway_name = module.module_api_gateway.api_gateway_name
     parent_api_gateway_execution_arn = module.module_api_gateway.api_gateway_execution_arn
@@ -142,4 +142,3 @@ output "module_lambda_func_go_lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
   value = module.module_lambda_func_go.lambda_func_base_url
 }
-*/
