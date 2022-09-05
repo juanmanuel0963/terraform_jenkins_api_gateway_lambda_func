@@ -57,8 +57,8 @@ output "module_api_gateway_invoke_url" {
 module "module_lambda_func_node" {
     source = "./lambda_func_node/terraform"
     region = var.region  
-    //access_key = var.access_key 
-    //secret_key = var.secret_key
+    access_key = var.access_key 
+    secret_key = var.secret_key
     lambda_func_name = "lambda_func_node"
     /*
     parent_api_gateway_id = module.module_api_gateway.api_gateway_id
@@ -71,21 +71,22 @@ module "module_lambda_func_node" {
 ############################################################################  ######
 # lambda_func_node - OUTPUT
 ##################################################################################
-
+/*
 output "module_lambda_func_node_lambda_func_name" {
   description = "Name of the Lambda function."
   value = module.module_lambda_func_node.lambda_func_name
 }
-
+*/
 output "module_lambda_func_node_lambda_func_bucket_name" {
   description = "Name of the S3 bucket used to store function code."
   value = module.module_lambda_func_node.lambda_func_bucket_name
 }
-
+/*
 output "module_lambda_func_node_lambda_func_role_name" {
   description = "Name of the rol"
   value = module.module_lambda_func_node.lambda_func_role_name
 }
+*/
 /*
 output "module_lambda_func_node_lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"

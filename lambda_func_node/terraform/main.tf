@@ -5,7 +5,7 @@
 variable "region" {
   type    = string
 }
-/*
+
 variable "access_key" {
   type    = string
 }
@@ -13,7 +13,7 @@ variable "access_key" {
 variable "secret_key" {
   type    = string
 }
-*/
+
 /*
 variable "parent_api_gateway_id"{
   type    = string
@@ -142,6 +142,7 @@ resource "aws_s3_object" "the_lambda_function" {
 //The source_code_hash attribute will change whenever you update the code contained in the archive, 
 //which lets Lambda know that there is a new version of your code available. 
 //Finally, the resource specifies a role which grants the function permission to access AWS services and resources in your account.
+/*
 resource "aws_lambda_function" "the_lambda_function" {
   function_name = "${var.lambda_func_name}"
 
@@ -155,9 +156,9 @@ resource "aws_lambda_function" "the_lambda_function" {
 
   role = aws_iam_role.lambda_exec.arn
 }
-
+*/
 //----------IAM Rol creation----------
-
+/*
 //Defines an IAM role that allows Lambda to access resources in your AWS account.
 resource "aws_iam_role" "lambda_exec" {
   name = "${local.lambda_func_role_name}"
@@ -175,9 +176,9 @@ resource "aws_iam_role" "lambda_exec" {
     ]
   })
 }
-
+*/
 //----------Policy assignment to the IAM Rol----------
-
+/*
 //Attaches a policy to the IAM role.
 //AWSLambdaBasicExecutionRole is an AWS managed policy that allows your Lambda function to write to CloudWatch logs.
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
@@ -193,6 +194,7 @@ resource "aws_cloudwatch_log_group" "the_lambda_function" {
   name = "/aws/lambda/${aws_lambda_function.the_lambda_function.function_name}"
   retention_in_days = 30
 }
+*/
 /*
 //----------API Gateway - adding lambda function (Integrations part) ----------
 
@@ -236,21 +238,22 @@ resource "aws_lambda_permission" "api_gw" {
 ##################################################################################
 # OUTPUT
 ##################################################################################
-
+/*
 output "lambda_func_name" {
   description = "Name of the Lambda function."
   value = aws_lambda_function.the_lambda_function.function_name
 }
-
+*/
 output "lambda_func_bucket_name" {
   description = "Name of the S3 bucket used to store function code."
   value = aws_s3_bucket.lambda_func_bucket.id
 }
-
+/*
 output "lambda_func_role_name" {
   description = "Name of the rol"
   value = aws_iam_role.lambda_exec.name
 }
+*/
 /*
 output "lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
