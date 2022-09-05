@@ -5,7 +5,7 @@
 variable "region" {
   type    = string
 }
-
+/*
 variable "access_key" {
   type    = string
 }
@@ -13,7 +13,8 @@ variable "access_key" {
 variable "secret_key" {
   type    = string
 }
-
+*/
+/*
 variable "parent_api_gateway_id"{
   type    = string
 }
@@ -29,7 +30,7 @@ variable "parent_api_gateway_execution_arn"{
 variable "parent_api_gateway_invoke_url"{
   type    = string
 }
-
+*/
 variable "lambda_func_name" {
   type    = string
 }
@@ -192,7 +193,7 @@ resource "aws_cloudwatch_log_group" "the_lambda_function" {
   name = "/aws/lambda/${aws_lambda_function.the_lambda_function.function_name}"
   retention_in_days = 30
 }
-
+/*
 //----------API Gateway - adding lambda function (Integrations part) ----------
 
 //Configures the API Gateway to use your Lambda function.
@@ -228,10 +229,10 @@ resource "aws_lambda_permission" "api_gw" {
   principal     = "apigateway.amazonaws.com"
 
   //source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*//*"
-  source_arn = "${var.parent_api_gateway_execution_arn}/*/*"
+  source_arn = "${var.parent_api_gateway_execution_arn}/*//*"
   
 }
-
+*/
 ##################################################################################
 # OUTPUT
 ##################################################################################
@@ -250,10 +251,10 @@ output "lambda_func_role_name" {
   description = "Name of the rol"
   value = aws_iam_role.lambda_exec.name
 }
-
+/*
 output "lambda_func_base_url" {
   description = "Base URL for API Gateway stage + function name"
   //value = "${aws_apigatewayv2_stage.lambda.invoke_url}${var.lambda_func_name}"
   value = "${var.parent_api_gateway_invoke_url}${var.lambda_func_name}"  
 }
-
+*/
