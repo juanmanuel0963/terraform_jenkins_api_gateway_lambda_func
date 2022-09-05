@@ -13,7 +13,7 @@ variable "access_key" {
 variable "secret_key" {
   type    = string
 }
-/*
+
 variable "parent_api_gateway_id"{
   type    = string
 }
@@ -29,7 +29,7 @@ variable "parent_api_gateway_execution_arn"{
 variable "parent_api_gateway_invoke_url"{
   type    = string
 }
-*/
+
 variable "lambda_func_name" {
   type    = string
 }
