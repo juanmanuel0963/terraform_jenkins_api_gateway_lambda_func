@@ -18,6 +18,14 @@ variable "api_gateway_name" {
   type    = string
 }
 
+variable "random_integer"{
+  type    = string
+}
+
+locals {
+  api_gateway_name = "${var.api_gateway_name}_${var.random_integer}"
+}
+
 #############################################################################
 # PROVIDERS
 #############################################################################
@@ -52,8 +60,8 @@ provider "aws" {
 //----------API Gateway creation----------
 
 //Defines a name for the API Gateway and sets its protocol to HTTP.
-resource "aws_apigatewayv2_api" "lambda" {
-  name          = var.api_gateway_name
+resource "aws_apigatewayv2_api" "the_api_gateway" {
+  name          = local.api_gateway_name
   protocol_type = "HTTP"
 }
 
@@ -61,8 +69,8 @@ resource "aws_apigatewayv2_api" "lambda" {
 
 //Sets up application stages for the API Gateway - such as "Test", "Staging", and "Production". 
 //The example configuration defines a single stage, with access logging enabled.
-resource "aws_apigatewayv2_stage" "lambda" {
-  api_id = aws_apigatewayv2_api.lambda.id
+resource "aws_apigatewayv2_stage" "the_api_gateway" {
+  api_id = aws_apigatewayv2_api.the_api_gateway.id
 
   name = "$default"
   auto_deploy = true
@@ -89,9 +97,9 @@ resource "aws_apigatewayv2_stage" "lambda" {
 
 //----------API Gateway - adding Cloud Watch ----------
 
-//Defines a log group to store access logs for the aws_apigatewayv2_stage.lambda API Gateway stage.
+//Defines a log group to store access logs for the aws_apigatewayv2_stage.the_api_gateway API Gateway stage.
 resource "aws_cloudwatch_log_group" "api_gw" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
+  name = "/aws/api_gw/${aws_apigatewayv2_api.the_api_gateway.name}"
 
   retention_in_days = 30
 }
@@ -102,20 +110,20 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 
 output "api_gateway_id" {
   description = "Id of the API Gateway."
-  value = aws_apigatewayv2_api.lambda.id
+  value = aws_apigatewayv2_api.the_api_gateway.id
 }
 
 output "api_gateway_name" {
   description = "Name of the API Gateway."
-  value = aws_apigatewayv2_api.lambda.name
+  value = aws_apigatewayv2_api.the_api_gateway.name
 }
 
 output "api_gateway_execution_arn" {
   description = "Execution arn of the API Gateway."
-  value = aws_apigatewayv2_api.lambda.execution_arn
+  value = aws_apigatewayv2_api.the_api_gateway.execution_arn
 }
 
 output "api_gateway_invoke_url" {
   description = "Base URL for API Gateway stage."
-  value = "${aws_apigatewayv2_stage.lambda.invoke_url}"
+  value = "${aws_apigatewayv2_stage.the_api_gateway.invoke_url}"
 }

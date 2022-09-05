@@ -14,6 +14,15 @@ variable "secret_key" {
   type    = string
 }
 
+resource "random_integer" "rand" {
+  min = 10000
+  max = 99999
+}
+
+locals {
+  random_integer = "${random_integer.rand.result}"
+}
+
 ##################################################################################
 # api_gateway
 ##################################################################################
@@ -21,9 +30,10 @@ variable "secret_key" {
 module "module_api_gateway" {
     source = "./api_gateway/terraform"
     region = var.region  
-    access_key = var.access_key 
+    access_key = var.access_key
     secret_key = var.secret_key
-    api_gateway_name = "API_Gateway_lambda_functions"
+    api_gateway_name = "API_Gateway"
+    random_integer = local.random_integer
 }
 
 ##################################################################################
@@ -60,6 +70,7 @@ module "module_lambda_func_node" {
     access_key = var.access_key 
     secret_key = var.secret_key
     lambda_func_name = "lambda_func_node"    
+    random_integer = local.random_integer
     parent_api_gateway_id = module.module_api_gateway.api_gateway_id
     parent_api_gateway_name = module.module_api_gateway.api_gateway_name
     parent_api_gateway_execution_arn = module.module_api_gateway.api_gateway_execution_arn

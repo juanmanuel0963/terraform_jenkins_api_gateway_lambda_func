@@ -14,6 +14,14 @@ variable "secret_key" {
   type    = string
 }
 
+variable "lambda_func_name" {
+  type    = string
+}
+
+variable "random_integer"{
+  type    = string
+}
+
 variable "parent_api_gateway_id"{
   type    = string
 }
@@ -29,27 +37,26 @@ variable "parent_api_gateway_execution_arn"{
 variable "parent_api_gateway_invoke_url"{
   type    = string
 }
-
-variable "lambda_func_name" {
-  type    = string
-}
-
+/*
 resource "random_integer" "rand" {
   min = 10000
   max = 99999
 }
-
+*/
+/*
 resource "random_pet" "lambda_func_bucket_name" {
   prefix = "${replace("${var.lambda_func_name}", "_", "-")}-bucket"
   length = 1
 }
-
+*/
   //lambda_func_bucket_name = random_pet.lambda_func_bucket_name.id
   //lambda_func_bucket_name = "${replace("${var.lambda_func_name}", "_", "-")}-bucket-${terraform.workspace}"
 
 locals {
-  lambda_func_bucket_name = "${replace("${var.lambda_func_name}", "_", "-")}-bucket-${random_integer.rand.result}"
-  lambda_func_role_name = "${var.lambda_func_name}-role-${random_integer.rand.result}"
+  //lambda_func_bucket_name = "${replace("${var.lambda_func_name}", "_", "-")}-bucket-${random_integer.rand.result}"
+  //lambda_func_role_name = "${var.lambda_func_name}-role-${random_integer.rand.result}"
+  lambda_func_bucket_name = "${replace("${var.lambda_func_name}", "_", "-")}-bucket-${var.random_integer}"
+  lambda_func_role_name = "${var.lambda_func_name}-role-${var.random_integer}"
 }
 
 #############################################################################
