@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/release-branch.v1.dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/juanmanuel0963/terraform_jenkins_api_gateway_lambda_func']]])
+		checkout([$class: 'GitSCM', branches: [[name: '*/release-branch.v1.dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/juanmanuel0963/terraform_jenkins_api_gateway_lambda_func']]])
             }
         }
         stage('Terraform init') {
